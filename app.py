@@ -2,140 +2,130 @@ import streamlit as st
 import pandas as pd
 from datetime import datetime
 
-# --- SYSTEM CONFIGURATION ---
-st.set_page_config(
-    page_title="AutoOS | Enterprise Executive Intelligence",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
+# --- PAGE CONFIGURATION (Professional Branding) ---
+st.set_page_config(page_title="AutoOS | Global Executive", layout="wide")
 
-# --- PROFESSIONAL THEME (NO EMOJIS, HIGH-END UI) ---
+# --- THE LUXURY UI (CSS Injection) ---
 st.markdown("""
     <style>
-    /* Main Background */
+    /* Full Page Background */
     .stApp {
-        background-color: #05070a;
-        color: #e0e0e0;
+        background: radial-gradient(circle at top right, #050a14, #020408);
+        color: #f0f0f0;
     }
-    /* Sidebar Styling */
+    
+    /* Header Styling */
+    .main-header {
+        font-size: 2.5rem;
+        font-weight: 800;
+        letter-spacing: -1px;
+        background: -webkit-linear-gradient(#fff, #888);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 0px;
+    }
+
+    /* Luxury Cards */
+    div[data-testid="metric-container"] {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+    }
+
+    /* Sidebar - Clean & Sharp */
     [data-testid="stSidebar"] {
-        background-color: #0a0d14;
-        border-right: 1px solid #1e2530;
+        background-color: #03060b;
+        border-right: 1px solid #161b22;
     }
-    /* Button Styling */
+
+    /* Professional Buttons */
     .stButton>button {
-        width: 100%;
-        border-radius: 2px;
-        border: 1px solid #00d4ff;
-        background-color: transparent;
-        color: #00d4ff;
-        font-weight: 600;
-        transition: 0.3s;
+        background: linear-gradient(145deg, #00d4ff, #0055ff);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        transition: 0.4s ease;
     }
     .stButton>button:hover {
-        background-color: #00d4ff;
-        color: #05070a;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 85, 255, 0.4);
     }
-    /* Metrics Styling */
-    div[data-testid="metric-container"] {
-        background-color: #0f141f;
-        border: 1px solid #1e2530;
-        padding: 20px;
-        border-radius: 4px;
-    }
-    /* Chat/Email Input */
-    .stTextInput>div>div>input {
-        background-color: #0f141f;
-        color: white;
-        border: 1px solid #1e2530;
+
+    /* Status Indicator */
+    .status-active {
+        color: #00ffcc;
+        font-family: monospace;
+        font-weight: bold;
+        text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
     }
     </style>
     """, unsafe_allow_html=True)
 
-# --- SIDEBAR NAVIGATION ---
+# --- SIDEBAR (Minimalist & Powerful) ---
 with st.sidebar:
-    st.title("AUTO OPERATING SYSTEM")
-    st.caption("Version 1.0.4 | Enterprise Encryption")
+    st.markdown("<h2 style='letter-spacing: 2px;'>AUTO OPERATING SYSTEM</h2>", unsafe_allow_html=True)
+    st.markdown("<p style='color: #666;'>SYSTEM CORE: v2.1.0</p>", unsafe_allow_html=True)
     st.write("---")
     
-    menu = st.radio(
-        "NAVIGATION",
-        ["EXECUTIVE DASHBOARD", "COMMUNICATION HUB", "AI LOGIC CENTER", "FINANCIAL OVERVIEW", "SYSTEM SETTINGS"]
-    )
+    nav = st.radio("COMMANDS", ["EXECUTIVE OVERVIEW", "GMAIL INTELLIGENCE", "REVENUE TRACKER", "CORE SETTINGS"])
     
     st.write("---")
-    st.subheader("CONNECTION STATUS")
-    st.info("GOOGLE CLOUD: ACTIVE")
-    st.info("STRIPE GATEWAY: SECURE")
-    
-    if st.button("EXECUTE SYSTEM SYNC"):
-        st.toast("Syncing Global Data...")
+    st.markdown("### CONNECTION")
+    st.markdown("🌐 <span class='status-active'>SERVER: OPTIMIZED</span>", unsafe_allow_html=True)
+    st.markdown("🛡️ <span class='status-active'>AES-256: ACTIVE</span>", unsafe_allow_html=True)
 
-# --- LOGIC SELECTION ---
-if menu == "EXECUTIVE DASHBOARD":
-    st.header("EXECUTIVE INTELLIGENCE DASHBOARD")
-    st.write("Real-time monitoring of automated business operations.")
-    
-    # Primary Metrics
-    m1, m2, m3, m4 = st.columns(4)
-    m1.metric("OPERATIONS AUTOMATED", "4,102", "INTRA-DAY")
-    m2.metric("REVENUE OPTIMIZED", "€21,450", "+3.2%")
-    m3.metric("TIME RECOVERED", "114 HOURS", "MONTHLY")
-    m4.metric("AI DECISION ACCURACY", "99.8%", "GLOBAL")
+# --- MAIN INTERFACE LOGIC ---
+if nav == "EXECUTIVE OVERVIEW":
+    st.markdown("<h1 class='main-header'>AUTO OPERATING SYSTEM</h1>", unsafe_allow_html=True)
+    st.markdown("<p style='color: #888; font-size: 1.2rem;'>The Global Standard for Autonomous Business Operations.</p>", unsafe_allow_html=True)
     
     st.write("---")
     
-    col_left, col_right = st.columns([2, 1])
+    # KPIs (Key Performance Indicators)
+    c1, c2, c3 = st.columns(3)
+    c1.metric("TOTAL AUTOMATIONS", "128,402", "+14.2%")
+    c2.metric("MONTHLY REVENUE", "€425,000", "TARGET: €30M")
+    c3.metric("AI EFFICIENCY", "99.98%", "OPTIMAL")
+
+    st.write("---")
     
-    with col_left:
-        st.subheader("LIVE AUTOMATION FEED")
-        # Placeholder for dynamic data
-        data = {
-            "TIMESTAMP": [datetime.now().strftime("%H:%M:%S") for _ in range(5)],
-            "ENTITY": ["Global Client A", "Invoice System", "Internal HR", "Project Alpha", "Market Data"],
-            "ACTION": ["Email Resolved", "Invoice Processed", "Schedule Conflict Fixed", "Draft Sent", "Analysis Complete"],
-            "STATUS": ["SUCCESS", "SUCCESS", "SUCCESS", "PENDING", "SUCCESS"]
+    col_a, col_b = st.columns([2, 1])
+    
+    with col_a:
+        st.subheader("LIVE INTELLIGENCE LOG")
+        log_data = {
+            "TIME": [datetime.now().strftime("%H:%M:%S") for _ in range(4)],
+            "PROCESS": ["GMAIL_SYNC", "INVOICE_GEN", "REPLY_DRAFT", "WHATSAPP_ALERT"],
+            "TARGET": ["CEO_TECH_CORP", "FINANCE_DEPT", "INVESTOR_RELATIONS", "OFFICE_ADMIN"],
+            "RESULT": ["COMPLETED", "SENT", "WAITING_APPROVAL", "NOTIFIED"]
         }
-        st.table(pd.DataFrame(data))
+        st.dataframe(pd.DataFrame(log_data), use_container_width=True)
 
-    with col_right:
-        st.subheader("SYSTEM NOTIFICATIONS")
-        st.warning("Action Required: High-priority contract detected in inbox.")
-        st.success("Financial report generated for Q2.")
-        st.info("AI Model successfully updated to latest parameters.")
+    with col_b:
+        st.subheader("SYSTEM HEALTH")
+        st.info("AI is currently analyzing 42 high-value threads.")
+        if st.button("CONNECT GMAIL (OAUTH 2.0)"):
+            st.write("Redirecting to Secure Google Login...")
 
-elif menu == "COMMUNICATION HUB":
-    st.header("COMMUNICATION HUB")
-    st.write("Direct AI-Human interface for inbox management.")
+elif nav == "GMAIL INTELLIGENCE":
+    st.header("GMAIL INTELLIGENCE HUB")
+    st.write("Automated parsing and responding engine.")
     
-    tab1, tab2 = st.tabs(["INBOX ANALYSIS", "INSTRUCT AI"])
-    
-    with tab1:
-        st.subheader("PENDING HIGH-VALUE EMAILS")
-        st.text_area("Email Content", "Subject: Partnership Proposal - €5M Investment\nFrom: venture@capital.com\n\nContent: We are interested in the AutoOS architecture...", height=150)
-        col_btn1, col_btn2 = st.columns(2)
-        if col_btn1.button("DRAFT AI RESPONSE"):
-            st.write("AI is drafting a professional negotiation response...")
-        if col_btn2.button("ARCHIVE"):
-            st.write("Archived.")
-
-    with tab2:
-        st.subheader("TRAIN YOUR AI")
-        instruction = st.text_input("Enter new operational rule (e.g., 'Always prioritize invoices over €1000')")
-        if st.button("UPDATE AI BRAIN"):
-            st.success("Rule integrated into AutoOS Core.")
-
-elif menu == "FINANCIAL OVERVIEW":
-    st.header("REVENUE & SUBSCRIPTION MANAGEMENT")
-    st.write("Tracking the €30M Monthly Goal.")
-    
-    st.subheader("SUBSCRIPTION METRICS")
-    st.progress(0.45, text="Target Completion: 45%")
-    
-    st.columns(3)[0].metric("ACTIVE SUBSCRIBERS", "14,200", "PREMIUM")
-    st.columns(3)[1].metric("MONTHLY REVENUE", "€425,000", "ESTIMATED")
-    st.columns(3)[2].metric("CHURN RATE", "0.2%", "LOW")
+    email_view = st.container()
+    with email_view:
+        st.markdown("<div style='background: #0f141f; padding: 20px; border-radius: 10px;'>", unsafe_allow_html=True)
+        st.write("**Subject:** Partnership Opportunity - Series A Funding")
+        st.write("**From:** silicon_v@vc_funds.com")
+        st.write("**AI Suggestion:** This is a high-priority investment inquiry. Suggest scheduling a call for Monday.")
+        st.button("APPROVE AI REPLY")
+        st.markdown("</div>", unsafe_allow_html=True)
 
 # --- FOOTER ---
 st.write("---")
-st.caption("AUTO OPERATING SYSTEM | SECURE ENTERPRISE SOLUTION | © 2026")
+st.markdown("<p style='text-align: center; color: #444;'>AUTO OPERATING SYSTEM | ENTERPRISE GRADE | © 2026</p>", unsafe_allow_html=True)

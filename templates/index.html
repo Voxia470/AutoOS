@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AUTO OPERATING SYSTEM | EXECUTIVE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background: radial-gradient(circle at top right, #0a0f1a, #020408); color: white; font-family: 'Inter', sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .neon-text { text-shadow: 0 0 10px #00d4ff; color: #00d4ff; }
+        .btn-premium { background: linear-gradient(90deg, #00d4ff, #0055ff); transition: 0.3s; }
+        .btn-premium:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0, 85, 255, 0.3); }
+    </style>
+</head>
+<body class="p-10">
+    <div class="max-w-6xl mx-auto">
+        <header class="flex justify-between items-center mb-16">
+            <h1 class="text-2xl font-bold tracking-widest neon-text">AUTO OPERATING SYSTEM</h1>
+            <button class="px-6 py-2 glass rounded-full text-sm">€29.99 / MONTHLY</button>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="glass p-8 rounded-3xl col-span-2">
+                <h2 class="text-4xl font-light mb-6">Autonomous Intelligence <br><span class="font-bold">for your Inbox.</span></h2>
+                <p class="text-gray-400 mb-10 text-lg">AutoOS analyzes, drafts, and replies to your emails while you build your empire.</p>
+                <button onclick="window.location.href='/connect-gmail'" class="btn-premium px-10 py-4 rounded-xl font-bold text-lg">CONNECT GMAIL NOW</button>
+            </div>
+
+            <div class="glass p-8 rounded-3xl flex flex-col justify-center">
+                <div class="mb-6">
+                    <p class="text-gray-500 uppercase text-xs tracking-widest">Active Users</p>
+                    <p class="text-3xl font-bold">14.2K</p>
+                </div>
+                <div>
+                    <p class="text-gray-500 uppercase text-xs tracking-widest">Revenue (ARR)</p>
+                    <p class="text-3xl font-bold text-green-400">€5.1M</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-12 glass p-6 rounded-2xl opacity-50">
+            <p class="text-xs font-mono text-cyan-500">SYSTEM_LOG: Monitoring inbox for high-priority contracts...</p>
+        </div>
+    </div>
+</body>
+</html>

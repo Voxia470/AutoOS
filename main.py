@@ -415,3 +415,35 @@ def run_agent():
 
 if __name__ == '__main__':
     run_agent()
+    
+    from fastapi import FastAPI, Request, BackgroundTasks
+from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
+import uvicorn
+import openai
+
+app = FastAPI()
+templates = Jinja2Templates(directory="templates")
+
+# --- AI LOGIC ---
+def auto_ai_reply(user_email, email_content):
+    # Yahan GPT-4 ya Gemini email ko samajh kar reply likhega
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo", # Ya gpt-4
+        messages=[{"role": "system", "content": "You are a professional executive assistant. Reply to this email professionally."},
+                  {"role": "user", "content": email_content}]
+    )
+    return response.choices[0].message.content
+
+@app.get("/", response_class=HTMLResponse)
+async def dashboard(request: Request):
+    # Ye hamara Luxury Frontend load karega
+    return templates.TemplateResponse("index.html", {"request": request})
+
+@app.post("/connect-gmail")
+async def connect_gmail():
+    # Yahan hum Google Login (OAuth) ka link denge
+    return {"auth_url": "https://accounts.google.com/o/oauth2/v2/auth..."}
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)

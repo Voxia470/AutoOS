@@ -1,85 +1,141 @@
 import streamlit as st
 import pandas as pd
-import datetime
+from datetime import datetime
 
-# --- PAGE CONFIG ---
-st.set_page_config(page_title="Voxia AI | Executive Command Center", page_icon="🦁", layout="wide")
+# --- SYSTEM CONFIGURATION ---
+st.set_page_config(
+    page_title="AutoOS | Enterprise Executive Intelligence",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 
-# --- CUSTOM CSS FOR PREMIUM LOOK ---
+# --- PROFESSIONAL THEME (NO EMOJIS, HIGH-END UI) ---
 st.markdown("""
     <style>
-    .main { background-color: #0b0e14; }
-    .stMetric { background-color: #161b22; padding: 15px; border-radius: 10px; border: 1px solid #30363d; }
-    .stButton>button { background: linear-gradient(45deg, #00ffcc, #0099ff); color: black; border: none; font-weight: bold; }
-    .status-live { color: #00ffcc; font-weight: bold; }
-    header {visibility: hidden;}
+    /* Main Background */
+    .stApp {
+        background-color: #05070a;
+        color: #e0e0e0;
+    }
+    /* Sidebar Styling */
+    [data-testid="stSidebar"] {
+        background-color: #0a0d14;
+        border-right: 1px solid #1e2530;
+    }
+    /* Button Styling */
+    .stButton>button {
+        width: 100%;
+        border-radius: 2px;
+        border: 1px solid #00d4ff;
+        background-color: transparent;
+        color: #00d4ff;
+        font-weight: 600;
+        transition: 0.3s;
+    }
+    .stButton>button:hover {
+        background-color: #00d4ff;
+        color: #05070a;
+    }
+    /* Metrics Styling */
+    div[data-testid="metric-container"] {
+        background-color: #0f141f;
+        border: 1px solid #1e2530;
+        padding: 20px;
+        border-radius: 4px;
+    }
+    /* Chat/Email Input */
+    .stTextInput>div>div>input {
+        background-color: #0f141f;
+        color: white;
+        border: 1px solid #1e2530;
+    }
     </style>
     """, unsafe_allow_html=True)
 
-# --- SIDEBAR (Settings & Configuration) ---
+# --- SIDEBAR NAVIGATION ---
 with st.sidebar:
-    st.image("https://cdn-icons-png.flaticon.com/512/4712/4712035.png", width=100)
-    st.title("Voxia Settings")
+    st.title("AUTO OPERATING SYSTEM")
+    st.caption("Version 1.0.4 | Enterprise Encryption")
     st.write("---")
-    st.subheader("⚙️ AI Configuration")
-    ai_mode = st.selectbox("AI Intelligence Level", ["Standard", "Executive", "Aggressive (Auto-Reply)"])
-    st.toggle("Auto-Schedule Meetings", value=True)
-    st.toggle("WhatsApp Alerts", value=True)
-    st.toggle("Invoice Extraction", value=True)
+    
+    menu = st.radio(
+        "NAVIGATION",
+        ["EXECUTIVE DASHBOARD", "COMMUNICATION HUB", "AI LOGIC CENTER", "FINANCIAL OVERVIEW", "SYSTEM SETTINGS"]
+    )
     
     st.write("---")
-    if st.button("🔄 Sync Gmail Now"):
-        st.toast("Syncing with Google Servers...")
+    st.subheader("CONNECTION STATUS")
+    st.info("GOOGLE CLOUD: ACTIVE")
+    st.info("STRIPE GATEWAY: SECURE")
+    
+    if st.button("EXECUTE SYSTEM SYNC"):
+        st.toast("Syncing Global Data...")
 
-# --- MAIN DASHBOARD ---
-st.title("🦁 VOXIA EXECUTIVE AI")
-st.markdown(f"**Welcome, Admin** | System Status: <span class='status-live'>● ACTIVE</span>", unsafe_allow_html=True)
-st.write("---")
-
-# --- TOP METRICS (Executive View) ---
-col_m1, col_m2, col_m3, col_m4 = st.columns(4)
-col_m1.metric("Emails Processed", "1,284", "+12% Today")
-col_m2.metric("Hours Saved", "42 hrs", "+5.4")
-col_m3.metric("Bills Detected", "€12,400", "Pending Review")
-col_m4.metric("Meetings Booked", "18", "This Week")
-
-st.write("---")
-
-# --- MIDDLE SECTION (Real-time Operations) ---
-col_left, col_right = st.columns([2, 1])
-
-with col_left:
-    st.subheader("📈 Productivity Analysis")
-    # Fake data for the chart
-    chart_data = pd.DataFrame({
-        'Day': ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-        'Tasks Handled': [45, 52, 48, 70, 85, 30, 25]
-    })
-    st.line_chart(chart_data.set_index('Day'))
-
-    st.subheader("📑 Recent Intelligence Logs")
-    logs = [
-        {"Time": "14:20", "Action": "Drafted Reply", "Target": "CEO of TechCorp", "Status": "Pending Approval"},
-        {"Time": "13:45", "Action": "Invoice Found", "Target": "Server Hosting (€450)", "Status": "Logged to Sheets"},
-        {"Time": "11:10", "Action": "Calendar Conflict", "Target": "Marketing Meet", "Status": "Rescheduled"},
-    ]
-    st.table(logs)
-
-with col_right:
-    st.subheader("💳 Subscription & Scalability")
-    with st.container():
-        st.write("**Current Tier:** Professional Enterprise")
-        st.write("**Next Billing:** May 08, 2026")
-        st.progress(85, text="API Usage: 850/1000 requests")
-        if st.button("🚀 UPGRADE TO UNLIMITED"):
-            st.balloons()
-            
+# --- LOGIC SELECTION ---
+if menu == "EXECUTIVE DASHBOARD":
+    st.header("EXECUTIVE INTELLIGENCE DASHBOARD")
+    st.write("Real-time monitoring of automated business operations.")
+    
+    # Primary Metrics
+    m1, m2, m3, m4 = st.columns(4)
+    m1.metric("OPERATIONS AUTOMATED", "4,102", "INTRA-DAY")
+    m2.metric("REVENUE OPTIMIZED", "€21,450", "+3.2%")
+    m3.metric("TIME RECOVERED", "114 HOURS", "MONTHLY")
+    m4.metric("AI DECISION ACCURACY", "99.8%", "GLOBAL")
+    
     st.write("---")
-    st.subheader("🧠 Brain Activity")
-    st.info("AI is currently analyzing 14 high-priority threads from your inbox.")
-    if st.button("View AI Decision Logic"):
-        st.code("IF email_priority > 8 AND contains('contract') -> Notify Admin via WhatsApp")
+    
+    col_left, col_right = st.columns([2, 1])
+    
+    with col_left:
+        st.subheader("LIVE AUTOMATION FEED")
+        # Placeholder for dynamic data
+        data = {
+            "TIMESTAMP": [datetime.now().strftime("%H:%M:%S") for _ in range(5)],
+            "ENTITY": ["Global Client A", "Invoice System", "Internal HR", "Project Alpha", "Market Data"],
+            "ACTION": ["Email Resolved", "Invoice Processed", "Schedule Conflict Fixed", "Draft Sent", "Analysis Complete"],
+            "STATUS": ["SUCCESS", "SUCCESS", "SUCCESS", "PENDING", "SUCCESS"]
+        }
+        st.table(pd.DataFrame(data))
+
+    with col_right:
+        st.subheader("SYSTEM NOTIFICATIONS")
+        st.warning("Action Required: High-priority contract detected in inbox.")
+        st.success("Financial report generated for Q2.")
+        st.info("AI Model successfully updated to latest parameters.")
+
+elif menu == "COMMUNICATION HUB":
+    st.header("COMMUNICATION HUB")
+    st.write("Direct AI-Human interface for inbox management.")
+    
+    tab1, tab2 = st.tabs(["INBOX ANALYSIS", "INSTRUCT AI"])
+    
+    with tab1:
+        st.subheader("PENDING HIGH-VALUE EMAILS")
+        st.text_area("Email Content", "Subject: Partnership Proposal - €5M Investment\nFrom: venture@capital.com\n\nContent: We are interested in the AutoOS architecture...", height=150)
+        col_btn1, col_btn2 = st.columns(2)
+        if col_btn1.button("DRAFT AI RESPONSE"):
+            st.write("AI is drafting a professional negotiation response...")
+        if col_btn2.button("ARCHIVE"):
+            st.write("Archived.")
+
+    with tab2:
+        st.subheader("TRAIN YOUR AI")
+        instruction = st.text_input("Enter new operational rule (e.g., 'Always prioritize invoices over €1000')")
+        if st.button("UPDATE AI BRAIN"):
+            st.success("Rule integrated into AutoOS Core.")
+
+elif menu == "FINANCIAL OVERVIEW":
+    st.header("REVENUE & SUBSCRIPTION MANAGEMENT")
+    st.write("Tracking the €30M Monthly Goal.")
+    
+    st.subheader("SUBSCRIPTION METRICS")
+    st.progress(0.45, text="Target Completion: 45%")
+    
+    st.columns(3)[0].metric("ACTIVE SUBSCRIBERS", "14,200", "PREMIUM")
+    st.columns(3)[1].metric("MONTHLY REVENUE", "€425,000", "ESTIMATED")
+    st.columns(3)[2].metric("CHURN RATE", "0.2%", "LOW")
 
 # --- FOOTER ---
 st.write("---")
-st.caption("Voxia AI v1.0.4 - Securely encrypted with AES-256")
+st.caption("AUTO OPERATING SYSTEM | SECURE ENTERPRISE SOLUTION | © 2026")
